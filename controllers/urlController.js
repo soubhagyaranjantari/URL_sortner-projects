@@ -1,5 +1,4 @@
 const shortId = require("shortid")
-// const { nanoid } = require('nanoid');
 const URL = require('../models/urlModel')
 const handdleGenerateNewShortUrl = async (req, res) => {
     const shortID = shortId()
@@ -12,6 +11,9 @@ const handdleGenerateNewShortUrl = async (req, res) => {
         shortID: shortID,
         redirectURL: body.url,
         visitHistory: []
+    })
+    return res.render('index', {
+        shortURL: shortID
     })
     return res.json({ Created_ID: shortID })
 }
@@ -26,7 +28,6 @@ const handdleGetAnalytics = async (req, res) => {
         } else {
             res.status(404).json({ error: 'URL not found' });
         }
-        throw new Error
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
