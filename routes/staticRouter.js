@@ -10,4 +10,11 @@ router.get('/', async (req, res) => {
     });
 })
 
+router.all('/signUp', (req, res) => {
+    res.render('signUp')
+})
+router.all('/logIn',(req, res) => {
+    res.render('logIn')
+})
+
 module.exports = router;

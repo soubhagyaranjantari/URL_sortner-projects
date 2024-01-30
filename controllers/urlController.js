@@ -1,8 +1,7 @@
 const shortId = require("shortid")
 const URL = require('../models/urlModel')
 const handdleGenerateNewShortUrl = async (req, res) => {
-    const shortID = shortId()
-    console.log(shortID);
+    const shortID = shortId();
     const body = req.body;
     if (!body.url) res.status(400).json({ msg: "url required" })
 
@@ -23,7 +22,6 @@ const handdleGetAnalytics = async (req, res) => {
         const result = await URL.findOne({ shortID });
 
         if (result) {
-            console.log(result);
             res.json({ "Total Clicks": result.visitHistory.length, "Analytic Summary": result.visitHistory });
         } else {
             res.status(404).json({ error: 'URL not found' });
